@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant Client
+    participant Server
+    participant Database
+
+    Client->>Server: Request data
+
+    alt Data exists
+        Server->>Database: Query
+        Database-->>Server: Results
+        Server-->>Client: Success response
+    else No data
+        Server-->>Client: Empty response
+    end
+
+    loop Health check
+        Client->>Server: Ping
+        Server-->>Client: Pong
+    end

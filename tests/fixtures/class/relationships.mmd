@@ -1,0 +1,25 @@
+classDiagram
+    Customer "1" --> "*" Order : places
+    Order "*" --> "1..*" LineItem : contains
+    Product "1" --> "*" LineItem : is in
+
+    class Customer {
+        +String name
+        +String email
+        +placeOrder()
+    }
+
+    class Order {
+        +Date date
+        +calculateTotal() double
+    }
+
+    class LineItem {
+        +int quantity
+        +double price
+    }
+
+    class Product {
+        +String name
+        +double price
+    }

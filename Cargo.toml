@@ -1,0 +1,65 @@
+[package]
+name = "mermaid-linter"
+version = "0.1.0"
+edition = "2021"
+authors = ["Mermaid Linter Contributors"]
+description = "A Rust-based syntax linter for Mermaid diagrams"
+license = "MIT"
+repository = "https://github.com/0xd219b/mermaid-linter"
+keywords = ["mermaid", "linter", "diagram", "parser", "syntax"]
+categories = ["command-line-utilities", "development-tools", "parsing"]
+
+[lib]
+name = "mermaid_linter"
+path = "src/lib.rs"
+
+[[bin]]
+name = "mermaid-lint"
+path = "src/bin/main.rs"
+
+[dependencies]
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Regex for pattern matching
+regex = "1.10"
+lazy_static = "1.4"
+once_cell = "1.19"
+
+# Parsing utilities
+logos = "0.14"  # Fast lexer generator
+nom = "7.1"     # Parser combinators (for complex grammars)
+
+# Unicode support
+unicode-segmentation = "1.10"
+
+# CLI
+clap = { version = "4.4", features = ["derive"] }
+
+# Logging
+log = "0.4"
+env_logger = "0.11"
+
+[dev-dependencies]
+# Testing
+pretty_assertions = "1.4"
+insta = { version = "1.34", features = ["yaml"] }  # Snapshot testing
+proptest = "1.4"  # Property-based testing
+criterion = "0.5"  # Benchmarking
+tempfile = "3.9"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[features]
+default = ["cli"]
+cli = []
+wasm = []

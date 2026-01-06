@@ -1,0 +1,9 @@
+graph TB
+    subgraph Frontend
+        A[Web App] --> B[Mobile App]
+    end
+    subgraph Backend
+        C[API Server] --> D[Database]
+    end
+    B --> C
+    A --> C
